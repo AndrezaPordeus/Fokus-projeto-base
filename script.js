@@ -17,14 +17,14 @@ const musicaFocoInput = document.querySelector('#alternar-musica');
 // Seleciona o texto dentro do botão "Começar/Pausar".
 const iniciarOuPausarBotao = document.querySelector('#start-pause span');
 // Cria um novo objeto de áudio para a música de fundo.
-const musica = new Audio('/sons/kingdoms-will-burn.mp3');
+const musica = new Audio('./sons/kingdoms-will-burn.mp3');
 // Seleciona o elemento que exibe o tempo na tela.
 const tempoNaTela = document.querySelector('#timer');
 
 // Cria objetos de áudio para os efeitos sonoros de play, pause e fim do tempo.
-const audioPlay = new Audio('/sons/play.mp3');
-const audioPausa = new Audio('/sons/pause.mp3');
-const audioTempoFinalizado = new Audio('/sons/ready-check.mp3');
+const audioPlay = new Audio('./sons/play.mp3');
+const audioPausa = new Audio('./sons/pause.mp3');
+const audioTempoFinalizado = new Audio('./sons/ready-check.mp3');
 
 // Variável para armazenar o tempo do timer em segundos. Inicia com 25 minutos (1500s).
 let tempoDecorridoEmSegundos = 1500;
@@ -76,7 +76,7 @@ function alterarContexto (contexto) {
     // Define o atributo 'data-contexto' no HTML para alterar o tema (cores, etc via CSS).
     html.setAttribute('data-contexto', contexto);
     // Altera a imagem do banner de acordo com o contexto.
-    banner.setAttribute('src', `/imagens/${contexto}.png`);
+    banner.setAttribute('src', `./imagens/${contexto}.png`);
     // Altera o texto do título de acordo com o contexto.
     switch (contexto) {
         case "foco":
