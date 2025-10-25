@@ -60,7 +60,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .app__title {
     line-height: 150%;
-    font-size: 5.2rem;
+    font-size: 4.5rem;
     font-style: normal;
     color: var(--color-secondary);
     font-weight: 200;
@@ -248,7 +248,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .app__title {
-        font-size: 2.6rem;
+        font-size: 1.7rem;
     }
 
     .app__card-timer {
