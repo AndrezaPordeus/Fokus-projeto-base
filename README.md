@@ -1,7 +1,6 @@
 # Fokus - Temporizador Pomodoro com Tema de World of Warcraft
 
-![Banner do Projeto](https://raw.githubusercontent.com/seu-usuario/seu-repositorio/main/imagens/foco.png) 
-> **Nota:** Para que a imagem acima funcione, substitua `seu-usuario` e `seu-repositorio` pelos seus dados do GitHub.
+![Banner do Projeto](./imagens/foco.png)
 
 Este é um projeto de um temporizador no estilo Pomodoro, desenvolvido originalmente como parte de um curso de JavaScript da Alura. A aplicação foi personalizada com uma temática inspirada no universo de **World of Warcraft**, utilizando imagens e sons do jogo para criar uma experiência mais imersiva e divertida.
 
