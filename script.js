@@ -16,6 +16,7 @@ const startPauseBotao = document.querySelector('#start-pause');
 const musicaFocoInput = document.querySelector('#alternar-musica');
 // Seleciona o texto dentro do botão "Começar/Pausar".
 const iniciarOuPausarBotao = document.querySelector('#start-pause span');
+const iniciarOuPausarBotaoIcone = document.querySelector('.app__card-primary-button-icon');
 // Cria um novo objeto de áudio para a música de fundo.
 const musica = new Audio('./sons/kingdoms-will-burn.mp3');
 // Seleciona o elemento que exibe o tempo na tela.
@@ -134,12 +135,14 @@ function iniciarOuPausar() {
     intervaloId = setInterval(contagemRegressiva, 1000);
     // Altera o texto do botão para "Pausar".
     iniciarOuPausarBotao.textContent = "Pausar";
+    iniciarOuPausarBotaoIcone.setAttribute('src', `./imagens/pause.png`);
 }
 
 // Função para parar o timer e resetar seu estado.
 function zerar() {
     // Para a execução do setInterval usando o ID armazenado.
     clearInterval(intervaloId);
+    iniciarOuPausarBotaoIcone.setAttribute('src', `./imagens/play_arrow.png`);
     // Altera o texto do botão de volta para "Começar".
     iniciarOuPausarBotao.textContent = "Começar";
     // Reseta a variável 'intervaloId' para null, indicando que o timer está parado.
