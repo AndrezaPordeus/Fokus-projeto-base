@@ -34,7 +34,7 @@ function criarElementoTarefa(tarefa) {
     paragrafo.classList.add('app__section-task-list-item-description')
 
     const botao = document.createElement('button');
-    botao.classList.add('app__button-edit');
+    botao.classList.add('app_button-edit');
 
     botao.onclick = () => {
         /* debugger */
