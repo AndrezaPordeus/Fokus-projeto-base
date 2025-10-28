@@ -93,7 +93,7 @@ function alterarContexto (contexto) {
         case "descanso-longo":
             titulo.innerHTML = `
             O destino me chama de volta.<br><strong class="app__title-strong">Sinta o ódio de dez mil anos!</strong>
-            ` 
+                        ` 
         default:
             break;
     }
