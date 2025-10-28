@@ -253,7 +253,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .app__section-task-header__ul:hover,
-.app_button-more:hover ~ .app__section-task-header__ul {
+.app__button-more:hover ~ .app__section-task-header__ul {
     display: block;
     text-align: right;
     border-radius: 0.8rem;
@@ -367,6 +367,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .app_button-edit,
 .app_button-more {
+.app__button-edit,
+.app__button-more {
     border: none;
     cursor: pointer;
     outline: inherit;
@@ -510,7 +512,7 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 150%;
 }
 
-.app_button-edit:disabled {
+.app__button-edit:disabled {
     color: #e6e6e6;
     opacity: 0.8;
     cursor: not-allowed;
