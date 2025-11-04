@@ -28,7 +28,7 @@
         </header>
         <section class="app__section-banner-container">
             <h1 class="app__title">
-                Não há tempo a perder,<br>
+                Não há tempo <br>a perder,
                 <strong class="app__title-strong">a caça aguarda!</strong>
             </h1>
             <figure class="app__image-figure">
@@ -77,6 +77,14 @@
                         </button>
                         <input type="range" id="volume-slider" class="app__volume-slider hidden" min="0" max="1" step="0.01" value="0.5">
                     </div>
+                </div>
+                <div id="music-name-container" class="app__music-name-container">
+                    <p id="current-song"></p>
+                </div>
+                <div class="app__music-timer-container">
+                    <span id="current-time">00:00</span>
+                    <span>/</span>
+                    <span id="total-duration">00:00</span>
                 </div>
                 <div class="app__card-primary-button-wrapper">
                     <button id="start-pause" class="app__card-primary-button">

@@ -25,6 +25,10 @@ const nextMusicBotao = document.querySelector('#next-music');
 // Seleciona o slider de volume.
 const volumeBotao = document.querySelector('#volume-button');
 const volumeSlider = document.querySelector('#volume-slider');
+// Seleciona os elementos do timer da música
+const currentTimeElement = document.querySelector('#current-time');
+const totalDurationElement = document.querySelector('#total-duration');
+const currentSongElement = document.querySelector('#current-song');
 
 // Seleciona o elemento que exibe o tempo na tela.
 const tempoNaTela = document.querySelector('#timer');
@@ -40,7 +44,7 @@ let tempoDecorridoEmSegundos = 1500;
 let intervaloId = null;
 
 // Lista de músicas disponíveis.
-const musicas = ['./sons/kingdoms-will-burn.mp3', './sons/wrath-of-the-lich-king.mp3', './sons/lament-of- the-highborne.mp3',];  // Adicione os caminhos dos seus arquivos de música
+const musicas = ['./sons/kingdoms-will-burn.mp3', './sons/lament-of- the-highborne.mp3', './sons/wrath-of-the-lich-king.mp3', ];  // Adicione os caminhos dos seus arquivos de música
 
 // Variável para rastrear o índice da música atual.
 let musicaAtual = 0;
@@ -172,6 +176,22 @@ function mostrarTempo() {
 // Chama a função uma vez no início para exibir o tempo inicial (25:00).
 mostrarTempo()
 
+// Função para formatar e exibir o nome da música atual
+function atualizarNomeMusica() {
+    const caminhoMusica = musicas[musicaAtual];
+    // Extrai o nome do arquivo: './sons/lament-of- the-highborne.mp3' -> 'lament-of- the-highborne.mp3'
+    const nomeArquivo = caminhoMusica.split('/').pop();
+    // Remove a extensão .mp3 e espaços extras: 'lament-of- the-highborne' -> 'lament-of-the-highborne'
+    const nomeSemExtensao = nomeArquivo.slice(0, -4).replace(/ /g, '');
+    // Substitui hífens por espaços e capitaliza as palavras: 'lament-of-the-highborne' -> 'Lament Of The Highborne'
+    const nomeFormatado = nomeSemExtensao.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
+    
+    // Casos especiais de formatação
+    let nomeFinal = nomeFormatado.replace('Of The', 'of the');
+
+    currentSongElement.textContent = nomeFinal;
+}
+
 // Adiciona um evento de clique ao botão "Música anterior".
 previousMusicBotao.addEventListener('click', () => {
     const estavaTocando = !musica.paused; // Verifica se a música estava tocando
@@ -180,6 +200,7 @@ previousMusicBotao.addEventListener('click', () => {
         musicaAtual = musicas.length - 1;
     }
     musica.src = musicas[musicaAtual];
+    atualizarNomeMusica();
     if (estavaTocando) { // Se estava tocando, a nova música começa a tocar
         musica.play();
     }
@@ -193,13 +214,42 @@ nextMusicBotao.addEventListener('click', () => {
         musicaAtual = 0;
     }
     musica.src = musicas[musicaAtual];
+    atualizarNomeMusica();
     if (estavaTocando) { // Se estava tocando, a nova música começa a tocar
         musica.play();
     }
 });
 
+// Função para formatar o tempo em minutos e segundos
+function formatarTempoMusica(segundos) {
+    const min = Math.floor(segundos / 60);
+    const seg = Math.floor(segundos % 60);
+    return `${min.toString().padStart(2, '0')}:${seg.toString().padStart(2, '0')}`;
+}
+
+// Evento para atualizar a duração total quando os metadados da música forem carregados
+musica.addEventListener('loadedmetadata', () => {
+    totalDurationElement.textContent = formatarTempoMusica(musica.duration);
+});
+
+// Evento para atualizar o tempo atual da música enquanto ela toca
+musica.addEventListener('timeupdate', () => {
+    currentTimeElement.textContent = formatarTempoMusica(musica.currentTime);
+});
+
+// Função para resetar o timer da música
+function resetarTimerMusica() {
+    currentTimeElement.textContent = '00:00';
+    // A duração total será atualizada pelo evento 'loadedmetadata'
+    // Se a música não carregar, pode mostrar 00:00
+    totalDurationElement.textContent = formatarTempoMusica(musica.duration || 0);
+}
+
 // Define a música inicial
 musica.src = musicas[musicaAtual];
+
+// Exibe o nome da música inicial
+atualizarNomeMusica();
 
 // Adiciona um evento para tocar a próxima música quando a atual terminar
 musica.addEventListener('ended', () => {
@@ -216,6 +266,7 @@ volumeBotao.addEventListener('click', () => {
 volumeSlider.addEventListener('input', () => {
     musica.volume = volumeSlider.value;
 });
+
 
 // Define o volume inicial da música para 50%.
 musica.volume = 0.5;
