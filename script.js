@@ -37,10 +37,13 @@ let tempoDecorridoEmSegundos = 1500;
 let intervaloId = null;
 
 // Lista de músicas disponíveis.
-const musicas = ['./sons/kingdoms-will-burn.mp3', './sons/outra-musica.mp3']; // Adicione os caminhos dos seus arquivos de música
+const musicas = ['./sons/kingdoms-will-burn.mp3', './sons/play.mp3', './sons/wrath-of-the-lich-king.mp3'];  // Adicione os caminhos dos seus arquivos de música
+
+// Variável para rastrear o índice da música atual.
+let musicaAtual = 0;
 
 // Configura a música de fundo para tocar em loop.
-musica.loop = true;
+musica.loop = false; // Deve ser false para o evento 'ended' funcionar
 
 // Adiciona um evento que é acionado quando o estado do checkbox de música muda.
 musicaFocoInput.addEventListener('change', () => {
@@ -168,14 +171,34 @@ mostrarTempo()
 
 // Adiciona um evento de clique ao botão "Música anterior".
 previousMusicBotao.addEventListener('click', () => {
-    // Implemente a lógica para tocar a música anterior na lista.
-    // Se estiver na primeira música, volte para a última.
-    console.log('Tocar música anterior');
+    const estavaTocando = !musica.paused; // Verifica se a música estava tocando
+    musicaAtual--;
+    if (musicaAtual < 0) {
+        musicaAtual = musicas.length - 1;
+    }
+    musica.src = musicas[musicaAtual];
+    if (estavaTocando) { // Se estava tocando, a nova música começa a tocar
+        musica.play();
+    }
 });
 
 // Adiciona um evento de clique ao botão "Próxima música".
 nextMusicBotao.addEventListener('click', () => {
-    // Implemente a lógica para tocar a próxima música na lista.
-    // Se estiver na última música, volte para a primeira.
-    console.log('Tocar próxima música');
+    const estavaTocando = !musica.paused; // Verifica se a música estava tocando
+    musicaAtual++;
+    if (musicaAtual >= musicas.length) {
+        musicaAtual = 0;
+    }
+    musica.src = musicas[musicaAtual];
+    if (estavaTocando) { // Se estava tocando, a nova música começa a tocar
+        musica.play();
+    }
+});
+
+// Define a música inicial
+musica.src = musicas[musicaAtual];
+
+// Adiciona um evento para tocar a próxima música quando a atual terminar
+musica.addEventListener('ended', () => {
+    nextMusicBotao.click(); // Simula um clique no botão "Próxima"
 });
