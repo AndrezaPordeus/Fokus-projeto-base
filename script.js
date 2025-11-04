@@ -19,6 +19,10 @@ const iniciarOuPausarBotao = document.querySelector('#start-pause span');
 const iniciarOuPausarBotaoIcone = document.querySelector('.app__card-primary-button-icon');
 // Cria um novo objeto de áudio para a música de fundo.
 const musica = new Audio('./sons/kingdoms-will-burn.mp3');
+// Seleciona os botões de "Música anterior" e "Próxima música".
+const previousMusicBotao = document.querySelector('#previous-music');
+const nextMusicBotao = document.querySelector('#next-music');
+
 // Seleciona o elemento que exibe o tempo na tela.
 const tempoNaTela = document.querySelector('#timer');
 
@@ -31,6 +35,9 @@ const audioTempoFinalizado = new Audio('./sons/ready-check.mp3');
 let tempoDecorridoEmSegundos = 1500;
 // Variável para armazenar o ID do intervalo (setInterval), para que possamos pará-lo depois.
 let intervaloId = null;
+
+// Lista de músicas disponíveis.
+const musicas = ['./sons/kingdoms-will-burn.mp3', './sons/outra-musica.mp3']; // Adicione os caminhos dos seus arquivos de música
 
 // Configura a música de fundo para tocar em loop.
 musica.loop = true;
@@ -158,3 +165,17 @@ function mostrarTempo() {
 
 // Chama a função uma vez no início para exibir o tempo inicial (25:00).
 mostrarTempo()
+
+// Adiciona um evento de clique ao botão "Música anterior".
+previousMusicBotao.addEventListener('click', () => {
+    // Implemente a lógica para tocar a música anterior na lista.
+    // Se estiver na primeira música, volte para a última.
+    console.log('Tocar música anterior');
+});
+
+// Adiciona um evento de clique ao botão "Próxima música".
+nextMusicBotao.addEventListener('click', () => {
+    // Implemente a lógica para tocar a próxima música na lista.
+    // Se estiver na última música, volte para a primeira.
+    console.log('Tocar próxima música');
+});
