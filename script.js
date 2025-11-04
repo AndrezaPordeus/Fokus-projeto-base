@@ -40,7 +40,7 @@ let tempoDecorridoEmSegundos = 1500;
 let intervaloId = null;
 
 // Lista de músicas disponíveis.
-const musicas = ['./sons/kingdoms-will-burn.mp3', './sons/wrath-of-the-lich-king.mp3'];  // Adicione os caminhos dos seus arquivos de música
+const musicas = ['./sons/kingdoms-will-burn.mp3', './sons/wrath-of-the-lich-king.mp3', './sons/lament-of- the-highborne.mp3',];  // Adicione os caminhos dos seus arquivos de música
 
 // Variável para rastrear o índice da música atual.
 let musicaAtual = 0;
