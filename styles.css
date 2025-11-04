@@ -101,8 +101,34 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     justify-content: center;
     gap: 1.6rem;
+} 
+
+.app__card-music-controls-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 128px;
 }
 
+.app__card-list--column {
+    flex-direction: column;
+    gap: 0.8rem; 
+}
+
+.app__volume-control-container {
+    display: flex;
+    flex-direction: column-reverse; /* Coloca o slider acima do botão */
+    align-items: center;
+    gap: 1.5rem; /* Aumenta o espaço */
+    position: relative; /* Necessário para posicionar o slider se ele estiver escondido */
+    margin-right: 50px;
+}
+.app__volume-slider {
+    -webkit-appearance: slider-vertical; /* Para navegadores WebKit (Chrome, Safari) */
+    width: 8px; /* Largura da barra */
+    height: 10rem; /* Altura do slider */
+    padding: 0 5px;
+}
 .app__card-button {
     font-family: Montserrat;
     font-size: 1.8rem;
@@ -304,6 +330,16 @@ h1, h2, h3, h4, h5, h6 {
 
     .app__section-active-task {
         gap: 2rem;
+    }
+
+    .app__card-music-controls-container {
+        flex-direction: column;
+        gap: 2rem;
+        margin: 0;
+    }
+
+    .app__volume-control-container {
+        margin-right: 0;
     }
 }
 

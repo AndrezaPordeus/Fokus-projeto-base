@@ -52,32 +52,32 @@
                     </li>
                 </ul>
                 <div id="timer" class="app__card-timer"></div>
-                <ul class="app__card-list">
-                    <li class="app__card-list-item">
-                        <button id="previous-music" class="app__card-button">
-                            <img class="app__card-primary-button-icon" src="./imagens/previous.png" alt="">
-                            <!-- Anterior -->
+                <div class="app__card-music-controls-container">
+                    <ul class="app__card-list">
+                        <li class="app__card-list-item">
+                            <button id="previous-music" class="app__card-button">
+                                <img class="app__card-primary-button-icon" src="./imagens/previous.png" alt="">
+                            </button>
+                        </li>
+                        <li class="app__card-list-item">
+                            <label class="toggle">
+                                <input class="toggle-checkbox" type="checkbox" id="alternar-musica">
+                                <div class="toggle-switch"></div>
+                            </label>
+                        </li>
+                        <li class="app__card-list-item">
+                            <button id="next-music" class="app__card-button">
+                                <img class="app__card-primary-button-icon" src="./imagens/next.png" alt="">
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="app__volume-control-container">
+                        <button id="volume-button" class="app__card-button">
+                            <img src="./imagens/volume.png">
                         </button>
-                    </li>
-                         <li class="app__card-list-item">
-                        <label class="toggle">
-                            <input class="toggle-checkbox" type="checkbox" id="alternar-musica">
-                            <div class="toggle-switch"></div>
-                        </label>
-                    </li>            
-                    <!-- <li class="app__card-list-item">
-                        <label class="app__card-list-label" for="alternar-musica">
-                            <img class="app__card-primary-button-icon" src="" alt="">
-                            Música -->
-                        <!-- </label> --> 
-                    </li>
-                    <li class="app__card-list-item">
-                        <button id="next-music" class="app__card-button">
-                            <img class="app__card-primary-button-icon" src="./imagens/next.png" alt="">
-                            <!-- Próxima -->
-                        </button>
-                    </li>
-                </ul>
+                        <input type="range" id="volume-slider" class="app__volume-slider hidden" min="0" max="1" step="0.01" value="0.5">
+                    </div>
+                </div>
                 <div class="app__card-primary-button-wrapper">
                     <button id="start-pause" class="app__card-primary-button">
                         <img class="app__card-primary-button-icon" src="./imagens/play_arrow.png" alt="">

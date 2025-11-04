@@ -22,6 +22,9 @@ const musica = new Audio('./sons/kingdoms-will-burn.mp3');
 // Seleciona os botões de "Música anterior" e "Próxima música".
 const previousMusicBotao = document.querySelector('#previous-music');
 const nextMusicBotao = document.querySelector('#next-music');
+// Seleciona o slider de volume.
+const volumeBotao = document.querySelector('#volume-button');
+const volumeSlider = document.querySelector('#volume-slider');
 
 // Seleciona o elemento que exibe o tempo na tela.
 const tempoNaTela = document.querySelector('#timer');
@@ -37,7 +40,7 @@ let tempoDecorridoEmSegundos = 1500;
 let intervaloId = null;
 
 // Lista de músicas disponíveis.
-const musicas = ['./sons/kingdoms-will-burn.mp3', './sons/play.mp3', './sons/wrath-of-the-lich-king.mp3'];  // Adicione os caminhos dos seus arquivos de música
+const musicas = ['./sons/kingdoms-will-burn.mp3', './sons/wrath-of-the-lich-king.mp3'];  // Adicione os caminhos dos seus arquivos de música
 
 // Variável para rastrear o índice da música atual.
 let musicaAtual = 0;
@@ -202,3 +205,17 @@ musica.src = musicas[musicaAtual];
 musica.addEventListener('ended', () => {
     nextMusicBotao.click(); // Simula um clique no botão "Próxima"
 });
+
+// Adiciona um evento de clique ao botão de volume para mostrar/esconder o slider.
+volumeBotao.addEventListener('click', () => {
+    volumeSlider.classList.toggle('hidden');
+});
+
+// Adiciona um evento de 'input' ao slider de volume.
+// Este evento é disparado continuamente enquanto o slider é arrastado.
+volumeSlider.addEventListener('input', () => {
+    musica.volume = volumeSlider.value;
+});
+
+// Define o volume inicial da música para 50%.
+musica.volume = 0.5;
