@@ -15,8 +15,8 @@ const startPauseBotao = document.querySelector('#start-pause');
 // Seleciona o input checkbox para alternar a música.
 const musicaFocoInput = document.querySelector('#alternar-musica');
 // Seleciona o texto dentro do botão "Começar/Pausar".
-const iniciarOuPausarBotao = document.querySelector('#start-pause span');
-const iniciarOuPausarBotaoIcone = document.querySelector('.app__card-primary-button-icon');
+const iniciarOuPausarBotao = startPauseBotao.querySelector('span');
+const iniciarOuPausarBotaoIcone = startPauseBotao.querySelector('.app__card-primary-button-icon');
 // Cria um novo objeto de áudio para a música de fundo.
 const musica = new Audio('./sons/kingdoms-will-burn.mp3');
 // Seleciona os botões de "Música anterior" e "Próxima música".
