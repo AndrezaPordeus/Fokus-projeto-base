@@ -28,7 +28,7 @@
         </header>
         <section class="app__section-banner-container">
             <h1 class="app__title">
-                Não há tempo <br>a perder,
+                Não há tempo a perder,
                 <strong class="app__title-strong">a caça aguarda!</strong>
             </h1>
             <figure class="app__image-figure">
@@ -53,7 +53,15 @@
                 </ul>
                 <div id="timer" class="app__card-timer"></div>
                 <div class="app__card-music-controls-container">
+
+                    <div class="app__card-list-item">
+                        <button id="shuffle-music" class="app__card-button">
+                            <img class="app__card-primary-button-icon" src="./imagens/shuffle.png">
+                        </button>
+                    </div>
                     <ul class="app__card-list">
+
+
                         <li class="app__card-list-item">
                             <button id="previous-music" class="app__card-button">
                                 <img class="app__card-primary-button-icon" src="./imagens/previous.png" alt="">
@@ -75,7 +83,8 @@
                         <button id="volume-button" class="app__card-button">
                             <img src="./imagens/volume.png">
                         </button>
-                        <input type="range" id="volume-slider" class="app__volume-slider hidden" min="0" max="1" step="0.01" value="0.5">
+                        <input type="range" id="volume-slider" class="app__volume-slider hidden" min="0" max="1"
+                            step="0.01" value="0.5">
                     </div>
                 </div>
                 <div id="music-name-container" class="app__music-name-container">

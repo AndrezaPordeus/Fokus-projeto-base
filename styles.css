@@ -125,8 +125,8 @@ h1, h2, h3, h4, h5, h6 {
 .app__card-music-controls-container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-left: 128px;
+    justify-content: space-around;
+    transform: scale(0.8);
 }
 
 .app__card-list--column {
@@ -137,18 +137,22 @@ h1, h2, h3, h4, h5, h6 {
 .app__volume-control-container {
     display: flex;
     align-items: center;
-    position: relative; /* Necessário para posicionar o slider se ele estiver escondido */
-    margin-right: 50px;
+    position: relative;
 }
 .app__volume-slider {
-    bottom: 100%; /* Posiciona o slider acima do botão */
+    -webkit-appearance: none;
+    appearance: none;
+    position: absolute;
+    top: 100%;
     left: 50%;
     transform: translateX(-50%);
-    margin-bottom: 1rem; /* Adiciona um espaço entre o slider e o botão */
-    -webkit-appearance: slider-vertical; /* Para navegadores WebKit (Chrome, Safari) */
-    width: 8px; /* Largura da barra */
-    height: 10rem; /* Altura do slider */
-    padding: 0 5px;
+    margin-top: 1rem;
+    width: 10rem;
+    height: 6px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
 }
 .app__card-button {
     font-family: Montserrat;

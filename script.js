@@ -22,6 +22,8 @@ const musica = new Audio('./sons/kingdoms-will-burn.mp3');
 // Seleciona os botões de "Música anterior" e "Próxima música".
 const previousMusicBotao = document.querySelector('#previous-music');
 const nextMusicBotao = document.querySelector('#next-music');
+const shuffleMusicBotao = document.querySelector('#shuffle-music');
+
 // Seleciona o slider de volume.
 const volumeBotao = document.querySelector('#volume-button');
 const volumeSlider = document.querySelector('#volume-slider');
@@ -44,10 +46,13 @@ let tempoDecorridoEmSegundos = 1500;
 let intervaloId = null;
 
 // Lista de músicas disponíveis.
-const musicas = ['./sons/kingdoms-will-burn.mp3', './sons/lament-of- the-highborne.mp3', './sons/wrath-of-the-lich-king.mp3', ];  // Adicione os caminhos dos seus arquivos de música
+const musicas = ['./sons/kingdoms-will-burn.mp3', './sons/lament-of-the-highborne.mp3', './sons/wrath-of-the-lich-king.mp3', ];  // Adicione os caminhos dos seus arquivos de música
 
 // Variável para rastrear o índice da música atual.
 let musicaAtual = 0;
+// Variável para controlar o modo aleatório
+let isShuffle = false;
+
 
 // Configura a música de fundo para tocar em loop.
 musica.loop = false; // Deve ser false para o evento 'ended' funcionar
@@ -209,11 +214,21 @@ previousMusicBotao.addEventListener('click', () => {
 // Adiciona um evento de clique ao botão "Próxima música".
 nextMusicBotao.addEventListener('click', () => {
     const estavaTocando = !musica.paused; // Verifica se a música estava tocando
-    musicaAtual++;
-    if (musicaAtual >= musicas.length) {
-        musicaAtual = 0;
+
+    if (isShuffle) {
+        let proximaMusica;
+        do {
+            proximaMusica = Math.floor(Math.random() * musicas.length);
+        } while (proximaMusica === musicaAtual); // Garante que não repita a mesma música
+        musicaAtual = proximaMusica;
+    } else {
+        musicaAtual++;
+        if (musicaAtual >= musicas.length) {
+            musicaAtual = 0;
+        }
     }
     musica.src = musicas[musicaAtual];
+
     atualizarNomeMusica();
     if (estavaTocando) { // Se estava tocando, a nova música começa a tocar
         musica.play();
@@ -254,6 +269,17 @@ atualizarNomeMusica();
 // Adiciona um evento para tocar a próxima música quando a atual terminar
 musica.addEventListener('ended', () => {
     nextMusicBotao.click(); // Simula um clique no botão "Próxima"
+});
+
+// Adiciona um evento de clique ao botão de aleatorizar
+shuffleMusicBotao.addEventListener('click', () => {
+    isShuffle = !isShuffle; // Inverte o estado de aleatório
+    shuffleMusicBotao.classList.toggle('active', isShuffle); // Adiciona ou remove a classe 'active'
+
+    // Se o modo aleatório for ativado e uma música estiver tocando, pula para uma música aleatória
+    if (isShuffle && !musica.paused) {
+        nextMusicBotao.click();
+    }
 });
 
 // Adiciona um evento de clique ao botão de volume para mostrar/esconder o slider.
