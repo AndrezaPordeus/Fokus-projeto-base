@@ -46,7 +46,48 @@ let tempoDecorridoEmSegundos = 1500;
 let intervaloId = null;
 
 // Lista de músicas disponíveis.
-const musicas = ['./sons/kingdoms-will-burn.mp3', './sons/lament-of-the-highborne.mp3', './sons/wrath-of-the-lich-king.mp3', ];  // Adicione os caminhos dos seus arquivos de música
+const musicas = [
+    {
+        nome: 'Kingdoms Will Burn',
+        path: './sons/kingdoms-will-burn.mp3'
+    },
+    {
+        nome: 'Lament of the Highborne',
+        path: './sons/lament-of-the-highborne.mp3'
+    },
+    {
+        nome: 'Alliance & Stormwind Theme',
+        path: './sons/alliance-stormwind-theme.mp3'
+    },
+    {
+        nome: 'City of Gold',
+        path: './sons/city-of-gold.mp3'
+    },
+    {
+        nome: 'Dark Ironforge',
+        path: './sons/dark-iIronforge.mp3'
+    },
+    {
+        nome: 'Darkmoon Faire',
+        path: './sons/darkmoon-faire-music.mp3'
+    },
+    {
+        nome: 'Horde & Orgrimmar Theme',
+        path: './sons/horde-orgrimmar-theme.mp3'
+    },
+    {
+        nome: 'Wrath of the Lich King',
+        path: './sons/wrath-of-the-lich-king.mp3'
+    },
+        {
+        nome: 'Sunwell Plateu',
+        path: './sons/sunwell-plateau.mp3'
+    },
+    {
+        nome: 'Eversong Woods',
+        path: './sons/eversong-woods.mp3'
+    }
+];
 
 // Variável para rastrear o índice da música atual.
 let musicaAtual = 0;
@@ -183,18 +224,7 @@ mostrarTempo()
 
 // Função para formatar e exibir o nome da música atual
 function atualizarNomeMusica() {
-    const caminhoMusica = musicas[musicaAtual];
-    // Extrai o nome do arquivo: './sons/lament-of- the-highborne.mp3' -> 'lament-of- the-highborne.mp3'
-    const nomeArquivo = caminhoMusica.split('/').pop();
-    // Remove a extensão .mp3 e espaços extras: 'lament-of- the-highborne' -> 'lament-of-the-highborne'
-    const nomeSemExtensao = nomeArquivo.slice(0, -4).replace(/ /g, '');
-    // Substitui hífens por espaços e capitaliza as palavras: 'lament-of-the-highborne' -> 'Lament Of The Highborne'
-    const nomeFormatado = nomeSemExtensao.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
-    
-    // Casos especiais de formatação
-    let nomeFinal = nomeFormatado.replace('Of The', 'of the');
-
-    currentSongElement.textContent = nomeFinal;
+    currentSongElement.textContent = musicas[musicaAtual].nome;
 }
 
 // Adiciona um evento de clique ao botão "Música anterior".
@@ -204,7 +234,7 @@ previousMusicBotao.addEventListener('click', () => {
     if (musicaAtual < 0) {
         musicaAtual = musicas.length - 1;
     }
-    musica.src = musicas[musicaAtual];
+    musica.src = musicas[musicaAtual].path;
     atualizarNomeMusica();
     if (estavaTocando) { // Se estava tocando, a nova música começa a tocar
         musica.play();
@@ -227,7 +257,7 @@ nextMusicBotao.addEventListener('click', () => {
             musicaAtual = 0;
         }
     }
-    musica.src = musicas[musicaAtual];
+    musica.src = musicas[musicaAtual].path;
 
     atualizarNomeMusica();
     if (estavaTocando) { // Se estava tocando, a nova música começa a tocar
@@ -261,7 +291,7 @@ function resetarTimerMusica() {
 }
 
 // Define a música inicial
-musica.src = musicas[musicaAtual];
+musica.src = musicas[musicaAtual].path;
 
 // Exibe o nome da música inicial
 atualizarNomeMusica();
